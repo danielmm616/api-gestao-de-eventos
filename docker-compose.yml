@@ -13,6 +13,7 @@ services:
     depends_on:
       - pg_gestao_eventos
     command: bash -c "yarn migration:run && yarn dev"
+
   pg_gestao_eventos:
     container_name: gestao-eventos-database
     image: postgres
