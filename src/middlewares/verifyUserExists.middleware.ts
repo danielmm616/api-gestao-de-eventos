@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-import { User } from "../entities";
+import { Company, User } from "../entities";
 import { ErrorHandler } from "../errors/errors";
-import { userRepository } from "../repositories";
+import { userRepository, companyRepository } from "../repositories";
 
 const verifyUserExists = async (
   req: Request,
@@ -10,8 +10,11 @@ const verifyUserExists = async (
 ) => {
   const userData = req.validated as User;
   const user: User = await userRepository.retrieve({ email: userData.email });
+  const company: Company = await companyRepository.retrieve({
+    email: userData.email,
+  });
 
-  if (user) {
+  if (user || company) {
     throw new ErrorHandler(409, "Email already registered");
   }
 
