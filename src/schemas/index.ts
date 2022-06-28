@@ -1,27 +1,44 @@
+import createOrderSchema from "./order/create.schema";
+import loginCompanySchema from "./company/login.schema";
+import loginUserSchema from "./user/login.schema";
+import serializedCompanySchema from "./company/get.schema";
+import serializedEventSchema from "./event/get.schema";
+import serializedOrdersSchema from "./order/get.schema";
+import serializedRatingSchema from "./rating/get.schema";
+import serializedUsersSchema from "./user/get.schema";
+import { createRatingSchema, ratingUpdateSchema } from "./rating/create.schema";
 import {
   createUserSchema,
   serializedCreateUserSchema,
   userUpdateSchema,
 } from "./user/create.schema";
-import loginUserSchema from "./user/login.schema";
-import serializedUsersSchema from "./user/get.schema";
 import {
+  companyUpdateSchema,
   createCompanySchema,
   serializedCreateCompanySchema,
-  companyUpdateSchema,
 } from "./company/create.schema";
-import serializedCompanySchema from "./company/get.schema";
-import loginCompanySchema from "./company/login.schema";
+import {
+  createEventSchema,
+  serializedCreateEventSchema,
+} from "./event/create.schema";
 
 export {
-  createUserSchema,
-  serializedCreateUserSchema,
-  userUpdateSchema,
-  loginUserSchema,
-  serializedUsersSchema,
-  createCompanySchema,
-  serializedCreateCompanySchema,
   companyUpdateSchema,
+  createCompanySchema,
+  createEventSchema,
+  createOrderSchema,
+  createRatingSchema,
+  createUserSchema,
   loginCompanySchema,
+  loginUserSchema,
   serializedCompanySchema,
+  serializedCreateCompanySchema,
+  serializedCreateEventSchema,
+  serializedCreateUserSchema,
+  serializedEventSchema,
+  serializedOrdersSchema,
+  serializedRatingSchema,
+  serializedUsersSchema,
+  ratingUpdateSchema,
+  userUpdateSchema,
 };
