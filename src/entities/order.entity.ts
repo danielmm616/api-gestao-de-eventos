@@ -6,9 +6,9 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { Event } from "./event.entity";
 import { User } from "./user.entity";
 import { Invoice } from "./invoice.entity";
+import { Event } from "./event.entity";
 
 @Entity("orders")
 export class Order {
@@ -18,7 +18,7 @@ export class Order {
   @Column()
   quantity: number;
 
-  @Column()
+  @Column({ type: "float" })
   price: number;
 
   @ManyToOne(() => User, (user) => user.orders, { eager: true })
