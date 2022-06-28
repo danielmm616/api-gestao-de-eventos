@@ -1,5 +1,6 @@
+version: "3.3"
 services:
-  api_gestao_eventos:
+  api:
     container_name: gestao-eventos-api
     build:
       context: .
@@ -11,10 +12,10 @@ services:
     ports:
       - 3000:3000
     depends_on:
-      - pg_gestao_eventos
+      - pg
     command: bash -c "yarn migration:run && yarn dev"
 
-  pg_gestao_eventos:
+  pg:
     container_name: gestao-eventos-database
     image: postgres
     env_file:
