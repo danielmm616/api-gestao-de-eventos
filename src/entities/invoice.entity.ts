@@ -1,13 +1,12 @@
-import { compare } from "bcrypt";
 import {
   Column,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { Event } from "./event.entity";
-import { User } from "./user.entity";
 import { Order } from "./order.entity";
 
 @Entity("invoices")
@@ -21,6 +20,8 @@ export class Invoice {
   @Column()
   totalPrice: number;
 
-  @OneToOne(() => Order, (order) => order)
-  order: Order;
+  @ManyToOne(() => Event, (event) => event.invoices, {
+    eager: true,
+  })
+  event: Event;
 }
