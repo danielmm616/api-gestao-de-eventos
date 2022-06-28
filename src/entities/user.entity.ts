@@ -9,6 +9,7 @@ import {
 import { Company } from "./company.entity";
 import { Event } from "./event.entity";
 import { Order } from "./order.entity";
+import { Rating } from "./rating.entity";
 
 @Entity("users")
 export class User {
@@ -35,6 +36,9 @@ export class User {
 
   @OneToMany(() => Order, (order) => order.user)
   orders?: Order[];
+
+  @OneToMany(() => Rating, (rating) => rating.user)
+  ratings?: Rating[];
 
   comparePwd = async (pwd: string): Promise<boolean> => {
     return await compare(pwd, this.password);

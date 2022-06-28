@@ -5,11 +5,6 @@
   "repository": "git@github.com:danielmm616/api-gestao-de-eventos.git",
   "author": "daniels <ddan.mm.16@gmail.com>",
   "license": "MIT",
-  "engines": {
-    "node": "17.6.x",
-    "npm": "8.5.x",
-    "yarn": "1.22.x"
-  },
   "dependencies": {
     "bcrypt": "^5.0.1",
     "dotenv": "^16.0.1",
@@ -41,7 +36,7 @@
   },
   "scripts": {
     "dev": "ts-node-dev --files --rs src/server.ts",
-    "start": "node dist/server.js",
+    "start": "node dist/src/server.js",
     "build": "tsc",
     "typeorm": "typeorm-ts-node-commonjs",
     "migration:create": "typeorm-ts-node-commonjs migration:create",
