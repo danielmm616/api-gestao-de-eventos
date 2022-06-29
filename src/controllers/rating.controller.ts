@@ -17,7 +17,7 @@ class RatingController {
   delete = async (req: Request, res: Response) => {
     const rating = await ratingService.delete(req);
 
-    return res.status(200).json(rating);
+    return res.status(204).json(rating);
   };
 
   update = async (req: Request, res: Response) => {
