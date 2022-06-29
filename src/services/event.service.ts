@@ -38,6 +38,11 @@ class EventService {
 
   getById = async (id: string) => {
     const event = await eventRepository.retrieve({ id });
+
+    if (!event) {
+      throw new ErrorHandler(404, "Event not found");
+    }
+
     return event;
   };
 
@@ -50,11 +55,11 @@ class EventService {
     }
 
     if (!company) {
-      throw new ErrorHandler(401, "You must be a company to close an event");
+      throw new ErrorHandler(401, "You must be a company to delete an event");
     }
 
     if (event.company.id !== company.id) {
-      throw new ErrorHandler(401, "You must be the company to close an event");
+      throw new ErrorHandler(401, "You must be the company to delete an event");
     }
 
     await eventRepository.delete(event.id);

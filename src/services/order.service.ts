@@ -36,21 +36,23 @@ class OrderService {
       (order) => order.user.id === req.decoded.id
     );
 
-    return await serializedOrdersSchema.validate(orders, {
-      stripUnknown: true,
-    });
+    if (orders.length === 0) {
+      throw new ErrorHandler(404, "You dont have any orders");
+    }
+
+    return orders;
   };
 
   cancel = async (req: Request) => {
     const order = await orderRepository.retrieve({ id: req.params.id });
     const user = await userRepository.retrieve({ id: req.decoded.id });
 
-    if (user.id !== order.user.id) {
-      throw new ErrorHandler(401, "You must be the user to cancel an order");
-    }
-
     if (!order) {
       throw new ErrorHandler(404, "Order not found");
+    }
+
+    if (user.id !== order.user.id) {
+      throw new ErrorHandler(401, "You must be the user to cancel an order");
     }
 
     if (order.invoice) {
@@ -65,16 +67,16 @@ class OrderService {
     const order = await orderRepository.retrieve({ id: req.params.id });
     const user = await userRepository.retrieve({ id: req.decoded.id });
 
-    if (order.invoice) {
-      throw new ErrorHandler(409, "Order already paid");
+    if (!order) {
+      throw new ErrorHandler(404, "Order not found");
     }
 
     if (user.id !== order.user.id) {
       throw new ErrorHandler(401, "You must be the user to pay an order");
     }
 
-    if (!order) {
-      throw new ErrorHandler(404, "Order not found");
+    if (order.invoice) {
+      throw new ErrorHandler(409, "Order already paid");
     }
 
     const invoice = {
@@ -87,7 +89,7 @@ class OrderService {
 
     order.invoice = newInvoice;
 
-    await orderRepository.save(order as Order);
+    await orderRepository.update(order.id, order);
 
     return newInvoice;
   };

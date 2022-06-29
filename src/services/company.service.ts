@@ -26,7 +26,7 @@ class CompanyService {
     const company = await companyRepository.retrieve({ email });
 
     if (!company) {
-      throw new ErrorHandler(404, "Invalid credentials");
+      throw new ErrorHandler(401, "Invalid credentials");
     }
 
     const matchPwd = await company.comparePwd(password);
