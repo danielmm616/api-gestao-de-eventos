@@ -6,8 +6,8 @@ interface ICompanyRepo {
   save: (payload: Partial<Company>) => Promise<Company>;
   retrieve: (payload: object) => Promise<Company>;
   getAll: () => Promise<Company[]>;
-  update: (id: string, payload: object) => Promise<UpdateResult>;
-  delete: (id: string) => Promise<DeleteResult>;
+  // update: (id: string, payload: object) => Promise<UpdateResult>;
+  // delete: (id: string) => Promise<DeleteResult>;
 }
 
 class CompanyRepository implements ICompanyRepo {
@@ -24,10 +24,10 @@ class CompanyRepository implements ICompanyRepo {
 
   getAll = async () => await this.repo.find();
 
-  update = async (id: string, payload: object) =>
-    await this.repo.update(id, { ...payload });
+  // update = async (id: string, payload: object) =>
+  //   await this.repo.update(id, { ...payload });
 
-  delete = async (id: string) => await this.repo.delete(id);
+  // delete = async (id: string) => await this.repo.delete(id);
 }
 
 export default new CompanyRepository();

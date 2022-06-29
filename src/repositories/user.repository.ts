@@ -6,8 +6,8 @@ interface IUserRepo {
   save: (user: Partial<User>) => Promise<User>;
   retrieve: (payload: object) => Promise<User>;
   getAll: () => Promise<User[]>;
-  update: (id: string, payload: object) => Promise<UpdateResult>;
-  delete: (id: string) => Promise<DeleteResult>;
+  // update: (id: string, payload: object) => Promise<UpdateResult>;
+  // delete: (id: string) => Promise<DeleteResult>;
 }
 
 class UserRepository implements IUserRepo {
@@ -24,10 +24,10 @@ class UserRepository implements IUserRepo {
 
   getAll = async () => await this.repo.find();
 
-  update = async (id: string, payload: object) =>
-    await this.repo.update(id, { ...payload });
+  // update = async (id: string, payload: object) =>
+  //   await this.repo.update(id, { ...payload });
 
-  delete = async (id: string) => await this.repo.delete(id);
+  // delete = async (id: string) => await this.repo.delete(id);
 }
 
 export default new UserRepository();

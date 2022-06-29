@@ -25,7 +25,7 @@ class UserService {
     const user = await userRepository.retrieve({ email });
 
     if (!user) {
-      throw new ErrorHandler(404, "Invalid credentials");
+      throw new ErrorHandler(401, "Invalid credentials");
     }
 
     const matchPwd = await user.comparePwd(password);

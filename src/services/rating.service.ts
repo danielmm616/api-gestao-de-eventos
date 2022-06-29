@@ -31,6 +31,10 @@ class RatingService {
       (rating) => rating.event.id === req.params.eventId
     );
 
+    if (ratings.length === 0) {
+      throw new ErrorHandler(404, "No ratings found");
+    }
+
     return await serializedRatingSchema.validate(ratings, {
       stripUnknown: true,
     });
@@ -63,9 +67,13 @@ class RatingService {
       throw new ErrorHandler(401, "You must be the user to update a rating");
     }
 
-    await ratingRepository.update(rating.id, req.validated);
+    await ratingRepository.update(rating.id, req.body);
 
-    return rating;
+    const updatedRating = await ratingRepository.retrieve({
+      id: req.params.id,
+    });
+
+    return updatedRating;
   };
 }
 
