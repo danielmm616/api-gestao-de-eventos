@@ -26,7 +26,7 @@ Uma API completa em Node.js onde empresas podem criar e marcar eventos, enquanto
 - Yup - validação e serialização
 - PostgreSQL - banco de dados
 - Docker/Docker-Compose
-- Jest - Testes de integração e unitários
+- Jest - Testes de integração 
 
 <br>
 
