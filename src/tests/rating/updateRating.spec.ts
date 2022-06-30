@@ -32,7 +32,6 @@ describe("Update Ratings", () => {
   });
 
   afterAll(async () => {
-    await connection.clear();
     await connection.disconnect();
   });
 

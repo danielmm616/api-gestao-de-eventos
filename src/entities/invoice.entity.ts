@@ -17,7 +17,7 @@ export class Invoice {
   @Column()
   purchaseDate: Date;
 
-  @Column()
+  @Column({ type: "float" })
   totalPrice: number;
 
   @ManyToOne(() => Event, (event) => event.invoices, {
