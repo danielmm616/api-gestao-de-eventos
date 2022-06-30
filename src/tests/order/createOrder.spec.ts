@@ -28,7 +28,6 @@ describe("Create Order", () => {
   });
 
   afterAll(async () => {
-    await connection.clear();
     await connection.disconnect();
   });
 

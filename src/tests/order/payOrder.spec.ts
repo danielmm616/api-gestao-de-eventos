@@ -45,7 +45,6 @@ describe("Pay Order", () => {
   });
 
   afterAll(async () => {
-    await connection.clear();
     await connection.disconnect();
   });
 
@@ -69,24 +68,24 @@ describe("Pay Order", () => {
     expect(response.body.message).toBe("You must be the user to pay an order");
   });
 
-  // it("Should pay order | Status code: 200", async () => {
-  //   const response = await supertest(app)
-  //     .put(`/api/orders/${order.id}/pay`)
-  //     .set("Authorization", `Bearer ${generateToken(user)}`);
+  it("Should pay order | Status code: 200", async () => {
+    const response = await supertest(app)
+      .put(`/api/orders/${order.id}/pay`)
+      .set("Authorization", `Bearer ${generateToken(user)}`);
 
-  //   expect(response.status).toBe(200);
-  //   expect(response.body).toHaveProperty("purchaseDate");
-  //   expect(response.body).toHaveProperty("totalPrice");
-  // });
+    expect(response.status).toBe(200);
+    expect(response.body).toHaveProperty("purchaseDate");
+    expect(response.body).toHaveProperty("totalPrice");
+  });
 
-  // it("Should not pay order if is already paid | Status code: 400", async () => {
-  //   const response = await supertest(app)
-  //     .put(`/api/orders/${order.id}/pay`)
-  //     .set("Authorization", `Bearer ${generateToken(user)}`);
+  it("Should not pay order if is already paid | Status code: 400", async () => {
+    const response = await supertest(app)
+      .put(`/api/orders/${order.id}/pay`)
+      .set("Authorization", `Bearer ${generateToken(user)}`);
 
-  //   expect(response.status).toBe(409);
-  //   expect(response.body.message).toBe("Order already paid");
-  // });
+    expect(response.status).toBe(409);
+    expect(response.body.message).toBe("Order already paid");
+  });
 
   it("Should not pay order if is a company", async () => {
     const newCompany = await companyRepository.save({ ...generateCompany() });

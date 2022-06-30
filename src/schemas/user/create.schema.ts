@@ -11,16 +11,6 @@ const createUserSchema = yup.object().shape({
     .required(),
 });
 
-const userUpdateSchema = yup.object().shape({
-  name: yup.string().optional(),
-  bio: yup.string().optional(),
-  email: yup.string().email().lowercase().optional(),
-  password: yup
-    .string()
-    .transform((pwd: string) => hashSync(pwd, 8))
-    .optional(),
-});
-
 const serializedCreateUserSchema = yup.object().shape({
   id: yup.string().uuid().required(),
   name: yup.string().required(),
@@ -28,4 +18,4 @@ const serializedCreateUserSchema = yup.object().shape({
   email: yup.string().email().required(),
 });
 
-export { createUserSchema, serializedCreateUserSchema, userUpdateSchema };
+export { createUserSchema, serializedCreateUserSchema };

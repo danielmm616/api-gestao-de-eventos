@@ -28,7 +28,6 @@ describe("Create Event", () => {
   });
 
   afterAll(async () => {
-    await connection.clear();
     await connection.disconnect();
   });
 

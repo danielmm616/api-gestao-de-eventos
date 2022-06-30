@@ -18,14 +18,6 @@ export class Connection {
   disconnect = async () => {
     await this.connection.destroy();
   };
-
-  clear = async () => {
-    const entities = this.connection.entityMetadatas;
-    entities.forEach(async (entity) => {
-      const repo = this.connection.getRepository(entity.name);
-      await repo.query(`DELETE FROM ${entity.tableName}`);
-    });
-  };
 }
 
 const connection = new Connection();

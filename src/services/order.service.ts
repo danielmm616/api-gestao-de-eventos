@@ -7,7 +7,6 @@ import {
   userRepository,
   invoiceRepository,
 } from "../repositories";
-import { serializedOrdersSchema } from "../schemas";
 
 class OrderService {
   create = async (req: Request) => {

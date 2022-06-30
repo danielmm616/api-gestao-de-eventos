@@ -32,7 +32,6 @@ describe("Create Rating", () => {
   });
 
   afterAll(async () => {
-    await connection.clear();
     await connection.disconnect();
   });
 
